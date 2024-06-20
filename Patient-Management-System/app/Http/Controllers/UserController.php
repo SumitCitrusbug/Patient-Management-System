@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Exception;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+
+
     // register method
     public function register(Request $request)
     { {
@@ -26,12 +30,15 @@ class UserController extends Controller
                 return response()->json(['status' => false, 'message' => 'validation error ', 'data' => $validate->errors()]);
             }
             try {
+
+                $role = Role::where("roles", 'user')->first();
+
                 $data = User::create([
                     'id' => Str::uuid(),
                     "name" => $request->name,
                     "email" => $request->email,
                     "password" => bcrypt($request->password),
-                    "role_id" => "726bb355-2e25-11ef-a076-d85ed3778fbf",
+                    "role_id" => $role->id,
                 ]);
             } catch (Exception $exception) {
                 return response()->json(["status" => false, "message" => $exception->getMessage()]);
