@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    //
+    // register method
     public function register(Request $request)
     { {
             $validate = Validator::make($request->all(), [
@@ -32,33 +32,24 @@ class UserController extends Controller
                     "email" => $request->email,
                     "password" => bcrypt($request->password),
                     "role_id" => "726bb355-2e25-11ef-a076-d85ed3778fbf",
-
                 ]);
             } catch (Exception $exception) {
                 return response()->json(["status" => false, "message" => $exception->getMessage()]);
             }
-
             return response()->json(['status' => true, 'message' => 'User created', 'data' => ['user' => $data]], 200);
         }
     }
 
-
+    // login method
     public function login(Request $request)
     {
-
-
-
         $validate = Validator::make($request->all(), [
             "email" => "required|email",
             'password' => ['required', 'string', 'min:8', 'regex:/[a-zA-Z]/', 'regex:/[0-9]/']
-
         ]);
         if ($validate->fails()) {
-
             return response()->json(['status' => false, 'message' => 'validation error in login', 'data' => $validate->errors()]);
         }
-
-
         try {
             //code...
 
@@ -67,7 +58,7 @@ class UserController extends Controller
                 $token = $user->createToken('data')->accessToken;
                 return response()->json(['status' => true, 'message' => 'login succsecfully', 'data' => ['user' => Auth::user()->name, 'access_token' => $token]], 200);
             } else {
-                return response()->json(['status' => true, 'message' => 'cradencial are wrong',]);
+                return response()->json(['status' => true, 'message' => 'you have entered either the Email and/or Password incorrectly',]);
             }
         } catch (Exception $exception) {
             return response()->json(["status" => false, "message" => $exception->getMessage()]);
