@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model
+class Role extends Model
 {
     use HasFactory;
 
+
+
     public $incrementing = false;
 
-    public function appointment()
+    public function users()
     {
-        return $this->belongsTo(Appointment::class);
+        return $this->hasMany(User::class);
     }
 }
