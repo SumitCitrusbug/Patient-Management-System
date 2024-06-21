@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
-use App\Models\User;
 use App\Models\Docter;
-use Illuminate\Support\Facades\Auth;
-
+use Exception;
 
 class DocterController extends Controller
 {
@@ -15,18 +12,16 @@ class DocterController extends Controller
      */
     public function docterList()
     {
-        //
+        try {
+
+            $docters = Docter::with('timeSlots')->get();
 
 
+            // $docters = Docter::select('name', 'specialties', 'amount')->with('timeSlots')->get();
 
-        // $user = User::with('roles')->get();
-        // dd($user);
-        // $role = Role::with('users')->get();
-
-
-
-
-        return $parts;
-        // return response()->json(['status' => true, 'message' => 'all docter list', 'data' => $docter]);
+            return response()->json(['status' => true, 'message' => ' All docterlist ', 'data' => $docters]);
+        } catch (Exception $e) {
+            return response()->json(['status' => true, 'message' => 'docterlist ', 'data' => $e->getMessage()]);
+        }
     }
 }

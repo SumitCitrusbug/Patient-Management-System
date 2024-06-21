@@ -20,6 +20,7 @@ return new class extends Migration
             $table->uuid('docter_id');
             $table->foreign('docter_id')->references('id')->on('docters')->onDelete('cascade');
             $table->enum('status', array('pending', 'accept', 'reject', 'paid'))->default('pending');
+
             $table->timestamps();
         });
     }
