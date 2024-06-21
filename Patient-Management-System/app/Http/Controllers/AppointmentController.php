@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Models\Timeslot;
 use App\Models\Appointment;
 use Illuminate\Http\Reques;
 use Illuminate\Support\Str;

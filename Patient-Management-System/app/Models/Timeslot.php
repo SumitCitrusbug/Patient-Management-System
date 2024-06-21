@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Doctor;
 
 class Timeslot extends Model
 {
@@ -14,9 +13,9 @@ class Timeslot extends Model
 
 
 
-    public function docter()
+    public function doctor()
     {
-        return $this->belongsTo(Docter::class);
+        return $this->belongsTo(Doctor::class);
     }
 
     public function appointments()
