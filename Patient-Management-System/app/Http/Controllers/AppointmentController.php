@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Models\Timeslot;
 use App\Models\Appointment;
-use Illuminate\Http\Reques;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+
 
 class AppointmentController extends Controller
 {
@@ -61,49 +55,5 @@ class AppointmentController extends Controller
     public function viewAppointment()
     {
         //
-        try {
-            $appointment = Appointment::with('users', 'docter', 'timeSlots')->get();
-            return response()->json(['status' => true, 'message' => 'appointment rejected ', 'data' => $appointment], 200);
-        } catch (Exception $e) {
-            return response()->json(['status' => false, 'message' => 'error found ', 'data' => $e->getMessage()], 400);
-        }
-    }
-
-
-    // reject appointment
-    public function rejectAppointment(Request $request)
-    {
-
-        try {
-            $appointment = Appointment::find($request->id);
-
-            if (!$appointment) {
-                return response()->json(['status' => false, 'message' => 'id not found '], 400);
-            } else {
-                $appointment->status = 'reject';
-                $appointment->save();
-                return response()->json(['status' => true, 'message' => 'appointment rejected ', 'data' => $request], 200);
-            }
-        } catch (Exception $e) {
-            return response()->json(['status' => false, 'message' => 'error found ', 'data' => $e->getMessage()], 400);
-        }
-    }
-
-    //accept appointment
-    public function acceptAppointment(Request $request)
-    {
-        try {
-            $appointment = Appointment::findOrFail($request->id);
-            if (!$appointment) {
-                return response()->json(['status' => false, 'message' => 'id not found '], 400);
-            } else {
-                $appointment->status = 'accept';
-                $appointment->save();
-                return response()->json(['status' => true, 'message' => 'appointment accept ', 'data' => $appointment]);
-            }
-        } catch (Exception $e) {
-
-            return response()->json(['status' => false, 'message' => 'error found   ', 'data' => $e->getMessage()], 400);
-        }
     }
 }

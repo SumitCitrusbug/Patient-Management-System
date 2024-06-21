@@ -10,12 +10,15 @@ class Docter extends Model
     use HasFactory;
 
 
+
+
+
     public $incrementing = false;
 
 
     public function timeSlots()
     {
-        return $this->hasMany(TimeSlot::class, 'docter_id', 'id');
+        return $this->hasMany(TimeSlot::class);
     }
 
     public function appointments()
