@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use Illuminate\Http\Reques;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -102,6 +103,8 @@ class AppointmentController extends Controller
                 return response()->json(['status' => true, 'message' => 'appointment accept ', 'data' => $appointment]);
             }
         } catch (Exception $e) {
+
+            Log::info('hello');
 
             return response()->json(['status' => false, 'message' => 'error found   ', 'data' => $e->getMessage()], 400);
         }
