@@ -17,12 +17,11 @@ class AdminRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-
         $role = Role::where("roles", 'admin')->first();
         if (Auth::user()->role_id == $role->id) {
             return $next($request);
         } else {
-            return response()->json(['status' => false, 'message' => 'you are not admin only admin can access this ',], 400);
+            return response()->json(['status' => false, 'message' => 'Only admin can access this page',], 400);
         }
     }
 }

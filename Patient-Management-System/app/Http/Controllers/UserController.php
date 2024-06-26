@@ -19,11 +19,11 @@ class UserController extends Controller
     // register method
     public function register(Request $request)
     { {
+            //validation in registration
             $validate = Validator::make($request->all(), [
                 "name" => "required",
                 "email" => "required|email|unique:users,email",
                 "password" => "required",
-
             ]);
             if ($validate->fails()) {
 
@@ -32,7 +32,6 @@ class UserController extends Controller
             try {
 
                 $role = Role::where("roles", 'user')->first();
-
                 $data = User::create([
                     'id' => Str::uuid(),
                     "name" => $request->name,
@@ -50,6 +49,7 @@ class UserController extends Controller
     // login method
     public function login(Request $request)
     {
+        //validation in login
         $validate = Validator::make($request->all(), [
             "email" => "required|email",
             'password' => ['required', 'string', 'min:8', 'regex:/[a-zA-Z]/', 'regex:/[0-9]/']
@@ -58,8 +58,6 @@ class UserController extends Controller
             return response()->json(['status' => false, 'message' => 'validation error in login', 'data' => $validate->errors()]);
         }
         try {
-            //code...
-
             if (Auth::attempt($request->all())) {
                 $user = Auth::user();
                 $token = $user->createToken('data')->accessToken;

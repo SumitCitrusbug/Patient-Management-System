@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Docter;
 use Exception;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Docter;
+use App\Models\Payment;
 
 class DocterController extends Controller
 {
@@ -14,14 +17,11 @@ class DocterController extends Controller
     {
         try {
 
+            //list the doctor with time slote
             $docters = Docter::with('timeSlots')->get();
-
-
-            // $docters = Docter::select('name', 'specialties', 'amount')->with('timeSlots')->get();
-
-            return response()->json(['status' => true, 'message' => ' All docterlist ', 'data' => $docters]);
+            return response()->json(['status' => true, 'message' => ' All docterlist ', 'data' => $docters], 200);
         } catch (Exception $e) {
-            return response()->json(['status' => true, 'message' => 'docterlist ', 'data' => $e->getMessage()]);
+            return response()->json(['status' => true, 'message' => 'Error found ', 'data' => $e->getMessage()], 400);
         }
     }
 }
