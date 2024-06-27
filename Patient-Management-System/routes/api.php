@@ -33,5 +33,6 @@ Route::middleware(['auth:api'])->group(function () {
     });
     Route::get('bookappointment', [AppointmentController::class, 'bookAppointment']);
     Route::get('docterlist', [DocterController::class, 'docterList']);
-    Route::Post('makepayment/{appointment_id}', [PaymentController::class, 'makePayment']);
+    Route::get('invoice', [PaymentController::class, 'payInvoice']);
 });
+Route::post('webhook', [PaymentController::class, 'webhookCAll']);

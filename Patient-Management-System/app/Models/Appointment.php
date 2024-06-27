@@ -13,6 +13,8 @@ class Appointment extends Model
 
     protected $guarded = [];
     public $incrementing = false;
+
+
     public function timeSlots()
     {
         return $this->belongsTo(TimeSlot::class, 'timeslot_id', 'id');

@@ -1,1 +1,16 @@
 *.sqlite*
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>appointment accepted</title>
+</head>
+
+<body>
+    <h1>Your appointment is rejected</h1>
+    <p>Dear {{ $data->users->name }},</p>
+
+
+</body>
+
+</html>
