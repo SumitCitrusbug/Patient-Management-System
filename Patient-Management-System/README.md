@@ -9,15 +9,19 @@
 3. run the migration
    -- php artisan migrate
 
-4.if you drop tables
---php artisan passport:client --personal
+4. if you drop tables
+   --php artisan passport:client --personal
 
-5.seeding database
---php artisan db:seed
+5. seeding database
+   --php artisan db:seed
 
 6. run the project
    --php artisan serve
 
-stripe cli
+7. stripe cli
 
-stripe listen --forward-to http://127.0.0.1:8000/api/webhook
+--stripe listen --forward-to http://127.0.0.1:8000/api/webhook
+
+8. run scheduler
+
+--php artisan schedule:work

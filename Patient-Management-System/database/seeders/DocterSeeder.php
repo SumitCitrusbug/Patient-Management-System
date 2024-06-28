@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Docter;
+use App\Models\Doctor;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +16,9 @@ class DocterSeeder extends Seeder
     public function run(): void
     {
         //
-        // Docter::factory()->count(20)->create();
+        // Doctor::factory()->count(20)->create();
 
-        DB::table('docters')->insert([
+        DB::table('doctors')->insert([
             [
                 'id' => Str::uuid(),
                 'name' => 'hadiyal nilkanth',

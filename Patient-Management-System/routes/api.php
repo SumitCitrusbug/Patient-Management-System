@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\DocterController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +22,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::Post('login', [UserController::class, 'login']);
-Route::Post('register', [UserController::class, 'register']);
+
+
+
+// changes - update naming convention
+Route::Post('login', [AuthController::class, 'login']);
+Route::Post('register', [AuthController::class, 'register']);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::middleware(['isAdmin'])->group(function () {
@@ -31,8 +35,9 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('reject', [AppointmentController::class, 'rejectAppointment']);
         Route::post('accept', [AppointmentController::class, 'acceptAppointment']);
     });
+
     Route::get('bookappointment', [AppointmentController::class, 'bookAppointment']);
-    Route::get('docterlist', [DocterController::class, 'docterList']);
+    Route::get('doctorlist', [DoctorController::class, 'doctorList']);
     Route::get('invoice', [PaymentController::class, 'payInvoice']);
 });
 Route::post('webhook', [PaymentController::class, 'webhookCAll']);

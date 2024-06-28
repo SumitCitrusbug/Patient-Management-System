@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign('timeslot_id')->references('id')->on('timeslots')->onDelete('cascade');
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->uuid('docter_id');
-            $table->foreign('docter_id')->references('id')->on('docters')->onDelete('cascade');
-            $table->enum('status', array('pending', 'accept', 'reject', 'paid'))->default('pending');
+            $table->uuid('doctor_id');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->enum('status', array('pending', 'accept', 'reject', 'paid', 'failed'))->default('pending');
 
             $table->timestamps();
         });

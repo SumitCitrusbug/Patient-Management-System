@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('timeslots', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('docter_id');
-            $table->foreign('docter_id')->references('id')->on('docters')->onDelete('cascade');
+            $table->uuid('doctor_id');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->date('date');       // 2020-01-01
             $table->time('time_start'); // 15:00:00
             $table->time('time_end');
-            $table->boolean('avaliblity')->default(0);
+            $table->boolean('avaliblity')->default(1);
             $table->timestamps();
         });
     }
