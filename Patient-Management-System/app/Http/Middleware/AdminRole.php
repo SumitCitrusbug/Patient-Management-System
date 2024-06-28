@@ -17,7 +17,7 @@ class AdminRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $role = Role::where("roles", 'admin')->first();
+        $role = Role::where("roles", 'admin')->first(); // check for eloquent in role table
         if (Auth::user()->role_id == $role->id) {
             return $next($request);
         } else {

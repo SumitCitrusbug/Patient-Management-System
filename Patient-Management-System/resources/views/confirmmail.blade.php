@@ -13,10 +13,10 @@
 <body>
     <h1> Payment successfully by user {{ $user->users->name }}</h1>
     <h1> Appoinment details</h1>
-    <p>Doctor name = {{ $user->docter->name }}</p>
-    <p>Appointment time = {{ $user->appointment_time }}</p>
-    <p>Appointment date = {{ $user->appointment_date }}</p>
-    <h2>Paid Amount = $ {{ $user->docter->amount }}</h2>
+    <p>Doctor name = {{ $user->doctor->name }}</p>
+    <p>Appointment time = {{ $user->timeSlots->time_start }} - {{ $user->timeSlots->time_end }}</p>
+    <p>Appointment date = {{ $user->timeSlots->date }}</p>
+    <h2>Paid Amount = $ {{ $user->doctor->amount }}</h2>
 </body>
 
 </html>

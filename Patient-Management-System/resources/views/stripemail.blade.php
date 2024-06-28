@@ -1,37 +1,3 @@
-{{-- <!DOCTYPE html>
-<html>
-
-<head>
-    <title>appointment accepted</title>
-
-    <script src="https://js.stripe.com/v3/"></script>
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-    </style>
-</head>
-
-<body>
-    <h1> DEAR , {{ $user->users->name }}</h1>
-    <h1> Your appointment is accepted</h1>
-    <p>Doctor name = {{ $user->docter->name }}</p>
-    <p>Appointment time = {{ $user->appointment_time }}</p>
-    <p>Appointment date = {{ $user->appointment_date }}</p>
-    <h2>Amount = $ {{ $user->docter->amount }}</h2>
-
-    <h3>To payment click on link below
-    </h3>
-    <p></p>
-    <br>
-    <a href="{{ $invoice }}"> MAKE PAYMENT INVOICE</a>
-
-
-
-</body>
-
-</html> --}}
 <!doctype html>
 <html lang="en">
 
@@ -63,10 +29,10 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>{{ $user->docter->name }}</td>
-                    <td>{{ $user->appointment_time }}</td>
-                    <td>{{ $user->appointment_date }}</td>
-                    <td>$ {{ $user->docter->amount }}</td>
+                    <td>{{ $user->doctor->name }}</td>
+                    <td>{{ $user->timeSlots->time_start }} - {{ $user->timeSlots->time_end }}</td>
+                    <td>{{ $user->timeSlots->date }}</td>
+                    <td>$ {{ $user->doctor->amount }}</td>
                 </tr>
                 <tr>
 

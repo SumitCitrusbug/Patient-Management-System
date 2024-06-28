@@ -2,10 +2,6 @@
 
 namespace App\Jobs;
 
-use Exception;
-use App\Models\Role;
-use App\Models\User;
-use App\Mail\confirmMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -13,35 +9,29 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Mail\registrationMail as MailRegistrationMail;
 
-class confirmationMail implements ShouldQueue
+class registrationMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
      */
-
-    protected $user;
-    public function __construct($user)
+    protected $data;
+    public function __construct($data)
     {
-        $this->user = $user;
+        $this->data = $data;
     }
 
     /**
      * Execute the job.
      */
     public function handle(): void
-    { {
-            $adminemail = Role::with('users')->where('roles', 'admin')->first();
-
-            Mail::to($adminemail->users->first()->email)->send(new confirmMail($this->user));
-
-            Mail::to($this->user->doctor->email)->send(new confirmMail($this->user));
-        }
+    {
+        Mail::to($this->data->email)->send(new MailRegistrationMail($this->data));
     }
-
-    public function failed(Exception $exception)
+    public function failed(\Exception $exception)
     {
 
         Log::error('Job failed' . $exception->getMessage());
