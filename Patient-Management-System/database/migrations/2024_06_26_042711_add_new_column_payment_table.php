@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('docters', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('specialties');
-            $table->decimal('amount', 5, 2);
-            $table->timestamps();
+        Schema::table('payments', function (Blueprint $table) {
+            //
+
+            $table->string('payment_intent_id')->after('status');
         });
     }
 
@@ -26,6 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('docters');
+        Schema::table('payments', function (Blueprint $table) {
+            //
+            $table->dropColumn('payment_intent_id');
+        });
     }
 };

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Docter;
+use App\Models\Doctor;
 
 class Appointment extends Model
 {
@@ -13,13 +13,17 @@ class Appointment extends Model
 
     protected $guarded = [];
     public $incrementing = false;
+    protected $hidden = [
+        'created_at', 'updated_at'
+    ];
+
     public function timeSlots()
     {
         return $this->belongsTo(TimeSlot::class, 'timeslot_id', 'id');
     }
-    public function docter()
+    public function doctor()
     {
-        return $this->belongsTo(Docter::class, 'docter_id', 'id');
+        return $this->belongsTo(Doctor::class, 'doctor_id', 'id');
     }
     public function users()
     {
